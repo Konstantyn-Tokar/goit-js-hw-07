@@ -13,14 +13,24 @@ const images = [
   },
 ];
 
-const galleryEl = document.querySelector('#gallery')
+// ================================  1  ============================ ( проверяли )
+const galleryEl = document.querySelector('#gallery');
 gallery.classList.add('gallery');
-console.log("galleryEl", galleryEl)
+console.log('galleryEl', galleryEl);
 
-const imagesItem = images.reduce((acc, images) => {
-  return (
-    acc + `<li class='gallery__list' ><img class=".gallery__image" src='${images.url} alt='${images.alt}'></li>`
-  )
-} ,'')
+// const imagesItem = images.reduce((acc, images) => {
+//   return (
+//     acc +
+//     `<li class='gallery__list' ><img src='${images.url} alt='${images.alt}'></li>`
+//   );
+// }, '');
 
-gallery.insertAdjacentHTML('afterbegin', imagesItem);
+// gallery.insertAdjacentHTML('afterbegin', imagesItem);
+
+// ================================  2  ============================ ( не проверяли )
+
+const imagesItem = images.map(image => {
+  return `<li class='gallery__list' ><img src='${image.url} alt='${image.alt}'></li>`;
+}, '');
+
+galleryEl.insertAdjacentHTML('beforeend', imagesItem.join(' '));
